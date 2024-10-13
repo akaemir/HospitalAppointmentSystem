@@ -1,10 +1,9 @@
 ﻿namespace HospitalAppointmentSystem.Models.Dtos.Response;
 
-public class DoctorResponseDto
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-
+public sealed record DoctorResponseDto
+(
+    int Id,
+    string Name,
     // Enum'ın ismi olarak DTO'da dönecek
-    public string BranchName { get; set; }
-}
+    string BranchName
+);

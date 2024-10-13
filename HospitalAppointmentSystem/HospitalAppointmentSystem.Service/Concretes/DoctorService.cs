@@ -5,16 +5,19 @@ using HospitalAppointmentSystem.Models.Dtos.Response;
 using HospitalAppointmentSystem.Models.Entities;
 using HospitalAppointmentSystem.Service.Abstracts;
 using HospitalAppointmentSystem.DataAccess.Abstracts;
+using HospitalAppointmentSystem.Service.Mapper;
 namespace HospitalAppointmentSystem.Service.Concretes;
 
 public class DoctorService : IDoctorService
 {
     private readonly IDoctorRepository _doctorRepository;
     private readonly IMapper _mapper;
-    public DoctorService(IDoctorRepository doctorRepository, IMapper mapper)
+    private readonly DoctorMapper _doctorMapper;
+    public DoctorService(IDoctorRepository doctorRepository, IMapper mapper, DoctorMapper doctorMapper)
     {
         _doctorRepository = doctorRepository;
         _mapper = mapper;
+        _doctorMapper = doctorMapper;
     }
     public Doctor Add(CreateDoctorRequest create)
     {
@@ -23,25 +26,32 @@ public class DoctorService : IDoctorService
         return createdDoctor;
     }
 
-    public Doctor Delete(int id)
+    public Doctor? Delete(int id)
     {
-        throw new NotImplementedException();
+        Doctor filtered = _doctorRepository.GetById(id);
+        Doctor? doctor = _doctorRepository.Remove(filtered);
+        return doctor;
     }
 
     public List<DoctorResponseDto> GetAll()
     {
         List<Doctor> doctors = _doctorRepository.GetAll();
-        List<DoctorResponseDto> responses = _mapper.ConvertToResponse();
+        List<DoctorResponseDto> responses = _doctorMapper.ConvertToResponseList(doctors);
         return responses;
     }
 
-    public DoctorResponseDto GetById(int id)
+    public DoctorResponseDto? GetById(int id)
     {
-        throw new NotImplementedException();
+        Doctor doctor = _doctorRepository.GetById(id);
+        DoctorResponseDto doctorResponseDto = _doctorMapper.ConvertToResponse(doctor);
+        return doctorResponseDto;
     }
 
     public Doctor Update(UpdateDoctorRequest update)
     {
-        throw new NotImplementedException();
+        var doctor = _mapper.Map<Doctor>(update);
+        //Doctor updatedDoctor = _doctorMapper.ConvertUpdateEntity(update);
+        Doctor updated = _doctorRepository.Update(doctor);
+        return updated;
     }
 }

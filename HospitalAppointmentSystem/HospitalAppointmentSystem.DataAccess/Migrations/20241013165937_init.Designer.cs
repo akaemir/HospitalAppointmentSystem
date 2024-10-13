@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalAppointmentSystem.DataAccess.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20241013120106_init")]
+    [Migration("20241013165937_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -56,7 +56,7 @@ namespace HospitalAppointmentSystem.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Branchs")
+                    b.Property<int>("Branch")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")

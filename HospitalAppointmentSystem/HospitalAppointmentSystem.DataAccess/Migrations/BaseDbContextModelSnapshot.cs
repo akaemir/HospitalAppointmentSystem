@@ -53,7 +53,7 @@ namespace HospitalAppointmentSystem.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Branchs")
+                    b.Property<int>("Branch")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
