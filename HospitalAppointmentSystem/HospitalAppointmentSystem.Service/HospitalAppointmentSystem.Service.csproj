@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstracts\" />
-    <Folder Include="Concretes\" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HospitalAppointmentSystem.DataAccess\HospitalAppointmentSystem.DataAccess.csproj" />
+    <ProjectReference Include="..\Models\HospitalAppointmentSystem.Models.csproj" />
   </ItemGroup>
 
 </Project>

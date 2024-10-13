@@ -12,7 +12,7 @@ public class BaseDbContext : DbContext
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=localhost,1907;Database = HospitalAppointment_DB; User=sa; Password=admin12345678;TrustServerCertificate=true");
+        optionsBuilder.UseSqlServer("Server=localhost,1907;Database = HospitalAppointment_DB; User=sa; Password=admin1234567;TrustServerCertificate=true");
     }
     public DbSet<Doctor> Doctors { get; set; }
     public DbSet<Appointment> Appointments { get; set; }
