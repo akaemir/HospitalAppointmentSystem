@@ -41,7 +41,7 @@ namespace HospitalAppointmentSystem.API.Controllers
         {
             try
             {
-                if (doctor.Name == string.Empty)
+                if (doctor.Name == string.Empty || doctor.Name == "string")
                 {
                     return BadRequest("Doktor ismi boş olmamalidir!");
                 }

@@ -17,6 +17,10 @@ public class DoctorMapper
     }
     public DoctorResponseDto ConvertToResponse(Doctor doctor)
     {
+        if (doctor is null)
+        {
+            throw new Exception("Doktor bulunamadi!");
+        }
         return new DoctorResponseDto(
             Id: doctor.Id,
             Name: doctor.Name,
