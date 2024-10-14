@@ -24,28 +24,65 @@ namespace HospitalAppointmentSystem.API.Controllers
             return Ok(doctors);
         }
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id) 
+        public IActionResult GetById(int id)
         {
-            DoctorResponseDto doctor = _doctorService.GetById(id);
-            return Ok(doctor);
+            try
+            {
+                DoctorResponseDto doctor = _doctorService.GetById(id);
+                return Ok(doctor);
+            }
+            catch (Exception ex)
+            {
+                return NotFound("Aranan id bulunamadi!");
+            }
         }
         [HttpPost("add")]
         public IActionResult Add([FromBody] CreateDoctorRequest doctor)
         {
-            var created = _doctorService.Add(doctor);
-            return Ok(created);
+            try
+            {
+                if (doctor.Name == string.Empty)
+                {
+                    return BadRequest("Doktor ismi boş olmamalidir!");
+                }
+                var created = _doctorService.Add(doctor);
+                return Ok(created);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
         [HttpDelete("remove")]
-        public IActionResult Delete(int id) 
+        public IActionResult Delete(int id)
         {
-            var deleted = _doctorService.Delete(id);
-            return Ok(deleted);
+            try
+            {
+                var deleted = _doctorService.Delete(id);
+                return Ok(deleted);
+
+            }
+            catch (Exception ex)
+            {
+                return NotFound("Silmek istediginiz id bulunamadi!");
+            }
         }
         [HttpPut("update")]
         public IActionResult Update(UpdateDoctorRequest updateDoctor)
         {
-            var updated = _doctorService.Update(updateDoctor);
-            return Ok(updated);
+            try
+            {
+                if (updateDoctor.id < 1)
+                {
+                    return BadRequest("Gecerli bir id degeri giriniz!");
+                }
+                var updated = _doctorService.Update(updateDoctor);
+                return Ok(updated);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
     }
 }

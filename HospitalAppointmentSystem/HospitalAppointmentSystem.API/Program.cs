@@ -17,7 +17,11 @@ builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddScoped<IDoctorRepository, EfDoctorRepository>();
 builder.Services.AddScoped<IDoctorService, DoctorService>();
 
+builder.Services.AddScoped<IAppointmentRepository, EfAppointmentRepository>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+
 builder.Services.AddScoped<DoctorMapper>();
+builder.Services.AddScoped<AppointmentMapper>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

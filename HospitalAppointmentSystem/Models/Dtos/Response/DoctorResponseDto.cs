@@ -4,6 +4,6 @@ public sealed record DoctorResponseDto
 (
     int Id,
     string Name,
-    // Enum'ın ismi olarak DTO'da dönecek
+    // Branch id ye eş gelen name gosterilecek
     string BranchName
 );

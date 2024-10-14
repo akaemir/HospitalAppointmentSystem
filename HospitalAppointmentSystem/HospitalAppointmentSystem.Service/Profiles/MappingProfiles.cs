@@ -13,5 +13,9 @@ public class MappingProfiles : Profile
         CreateMap<CreateDoctorRequest, Doctor>();
         CreateMap<DoctorResponseDto, Doctor>();
         CreateMap<UpdateDoctorRequest, Doctor>();
+
+        CreateMap<CreateAppointmentRequest, Appointment>();
+        CreateMap<AppointmentResponseDto, Appointment>();
+        CreateMap<UpdateAppointmentRequest, Appointment>();
     }
 }
